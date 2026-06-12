@@ -1,0 +1,620 @@
+/* ============================================================
+   NULO STUDIO — INDUSTRIES
+   css/styleIndustries.css
+   Global patterns (nav, footer, buttons, section wrappers,
+   containers, FAQ accordion, reveal classes) → styleGlobal.css
+   This file covers: hub page + industry template page.
+============================================================ */
+
+
+/* ============================================================
+   SHARED — HERO (hub + template pages share this base)
+============================================================ */
+
+.indHeroSection {
+  position: relative;
+  padding: clamp(8rem, 16vw, 12rem) var(--containerPad) clamp(4rem, 7vw, 6rem);
+  background: var(--clrDeep);
+  overflow: hidden;
+  text-align: center;
+}
+
+.indHeroGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 50% at 50% 60%, rgba(126,184,240,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.indHeroInner {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.indHeroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp3);
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: var(--sp4);
+}
+
+.indHeroEyebrow a {
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color var(--transFast);
+}
+
+.indHeroEyebrow a:hover { color: var(--clrAccent); }
+
+.indHeroEyebrow span { color: rgba(255,255,255,0.18); }
+
+.indHeroTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(2.4rem, 6vw, 5.2rem);
+  line-height: var(--leadingTight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp6);
+}
+
+.indHeroSub {
+  font-family: var(--fontBody);
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.75;
+  color: rgba(255,255,255,0.52);
+  max-width: 580px;
+  margin: 0 auto var(--sp10);
+}
+
+.indHeroCtas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp5);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .indHeroCtas { flex-direction: column; width: 100%; }
+  .indHeroCtas .btnPrimary,
+  .indHeroCtas .btnGhost { width: 100%; justify-content: center; }
+}
+
+
+/* ============================================================
+   HUB — OVERVIEW
+============================================================ */
+
+.indOverviewSection .containerMid {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indOverviewText {
+  font-family: var(--fontBody);
+  font-size: 16px;
+  line-height: 1.82;
+  color: rgba(255,255,255,0.62);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   HUB — INDUSTRIES GRID
+   Uses global .serviceCard — only the grid layout is new here.
+============================================================ */
+
+.indHubSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indHubHeader {
+  margin-bottom: var(--sp10);
+}
+
+.indHubGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp5);
+}
+
+@media (max-width: 1100px) {
+  .indHubGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .indHubGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .indHubGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   HUB — WHY INDUSTRY-SPECIFIC WEBSITES MATTER
+============================================================ */
+
+.indWhySection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indWhyHeader {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--sp12);
+}
+
+.indWhySub {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.52);
+  margin-top: var(--sp5);
+}
+
+.indWhyGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp5);
+}
+
+.indWhyCard {
+  padding: var(--sp6);
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.015);
+}
+
+.indWhyCardIcon {
+  width: 36px;
+  height: 36px;
+  color: var(--clrAccent);
+  opacity: 0.7;
+  margin-bottom: var(--sp4);
+}
+
+.indWhyCardTitle {
+  font-family: var(--fontHeading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp3);
+}
+
+.indWhyCardText {
+  font-family: var(--fontBody);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.52);
+}
+
+@media (max-width: 960px) {
+  .indWhyGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .indWhyGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   HUB — CTA
+============================================================ */
+
+.indHubCtaSection .containerMid {
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.indHubCtaInner {
+  text-align: center;
+  position: relative;
+}
+
+.indHubCtaAccent {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(126,184,240,0.5), transparent);
+  margin: 0 auto var(--sp8);
+}
+
+.indHubCtaTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  line-height: var(--leadingTight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp5);
+}
+
+.indHubCtaSub {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.52);
+  max-width: 500px;
+  margin: 0 auto var(--sp10);
+}
+
+.indHubCtaGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp5);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .indHubCtaGroup { flex-direction: column; width: 100%; }
+  .indHubCtaGroup .btnPrimary,
+  .indHubCtaGroup .btnGhost { width: 100%; justify-content: center; }
+}
+
+
+/* ============================================================
+   TEMPLATE — CHALLENGES SECTION
+============================================================ */
+
+.indChallSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indChallHeader {
+  max-width: 640px;
+  margin-bottom: var(--sp10);
+}
+
+.indChallGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp5);
+}
+
+.indChallCard {
+  padding: var(--sp6) var(--sp6) var(--sp8);
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.015);
+  position: relative;
+}
+
+.indChallNum {
+  font-family: var(--fontMono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(126,184,240,0.5);
+  margin-bottom: var(--sp4);
+  display: block;
+}
+
+.indChallTitle {
+  font-family: var(--fontHeading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp3);
+}
+
+.indChallText {
+  font-family: var(--fontBody);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.52);
+}
+
+@media (max-width: 900px) {
+  .indChallGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .indChallGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   TEMPLATE — HOW NULO HELPS
+============================================================ */
+
+.indHelpSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indHelpHeader {
+  max-width: 640px;
+  margin-bottom: var(--sp10);
+}
+
+.indHelpGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sp5);
+}
+
+.indHelpItem {
+  padding: var(--sp6) var(--sp5) var(--sp8);
+  border-right: 1px solid var(--clrBorder);
+}
+
+.indHelpItem:last-child { border-right: none; }
+
+.indHelpIcon {
+  width: 36px;
+  height: 36px;
+  color: var(--clrAccent);
+  opacity: 0.7;
+  margin-bottom: var(--sp5);
+}
+
+.indHelpNum {
+  font-family: var(--fontMono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: var(--sp3);
+  display: block;
+}
+
+.indHelpTitle {
+  font-family: var(--fontHeading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp3);
+}
+
+.indHelpText {
+  font-family: var(--fontBody);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: var(--sp4);
+}
+
+@media (max-width: 960px) {
+  .indHelpGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .indHelpItem { border-right: none; border-bottom: 1px solid var(--clrBorder); }
+  .indHelpItem:last-child { border-bottom: none; }
+}
+
+@media (max-width: 540px) {
+  .indHelpGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   TEMPLATE — RECOMMENDED SERVICES
+============================================================ */
+
+.indSvcSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indSvcHeader {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--sp10);
+}
+
+.indSvcGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp5);
+}
+
+.indSvcCard {
+  padding: var(--sp6);
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.015);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp3);
+  transition: border-color var(--transFast), background var(--transFast);
+  text-decoration: none;
+}
+
+.indSvcCard:hover {
+  border-color: var(--clrAccentBorder);
+  background: rgba(126,184,240,0.04);
+}
+
+.indSvcCardNum {
+  font-family: var(--fontMono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+}
+
+.indSvcCardTitle {
+  font-family: var(--fontHeading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+}
+
+.indSvcCardText {
+  font-family: var(--fontBody);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.48);
+  flex: 1;
+}
+
+.indSvcCardArrow {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clrAccent);
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .indSvcGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .indSvcGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   TEMPLATE — LOCAL SEO SECTION
+============================================================ */
+
+.indSeoSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indSeoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.indSeoLeft {}
+
+.indSeoTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: var(--leadingTight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp6);
+}
+
+.indSeoPara {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: 1.82;
+  color: rgba(255,255,255,0.62);
+  margin-bottom: var(--sp5);
+}
+
+.indSeoPara:last-of-type { margin-bottom: 0; }
+
+.indSeoRight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp4);
+}
+
+.indSeoPoint {
+  padding: var(--sp5) var(--sp6);
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.012);
+}
+
+.indSeoPointLabel {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clrAccent);
+  opacity: 0.7;
+  margin-bottom: var(--sp2);
+  display: block;
+}
+
+.indSeoPointText {
+  font-family: var(--fontBody);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.55);
+}
+
+@media (max-width: 900px) {
+  .indSeoGrid { grid-template-columns: 1fr; gap: var(--sp10); }
+}
+
+
+/* ============================================================
+   TEMPLATE — FAQ HEADER
+   (accordion uses global .faqItem / .faqQuestion / .faqAnswer)
+============================================================ */
+
+.indFaqSection .containerNarrow {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.indFaqHeader {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--sp12);
+}
+
+
+/* ============================================================
+   TEMPLATE — CTA
+============================================================ */
+
+.indPageCtaSection .containerMid {
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.indPageCtaInner {
+  text-align: center;
+  position: relative;
+}
+
+.indPageCtaAccent {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(126,184,240,0.5), transparent);
+  margin: 0 auto var(--sp8);
+}
+
+.indPageCtaTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: var(--leadingTight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp5);
+}
+
+.indPageCtaSub {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.52);
+  max-width: 480px;
+  margin: 0 auto var(--sp10);
+}
+
+.indPageCtaGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp5);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .indPageCtaGroup { flex-direction: column; width: 100%; }
+  .indPageCtaGroup .btnPrimary,
+  .indPageCtaGroup .btnGhost { width: 100%; justify-content: center; }
+}

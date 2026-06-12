@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Dev\\\\NuloStudioMaster\" -Recurse -File)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Set-Content -Path \"c:\\\\Dev\\\\NuloStudioMaster\\\\services.html\" -Value \"\" -Encoding UTF8)",
+      "PowerShell(& 'c:\\\\Dev\\\\NuloStudioMaster\\\\.claude\\\\reorder-home.ps1')",
+      "PowerShell(node --check js\\\\indexJS.js)",
+      "PowerShell(node --check js\\\\globalJS.js)",
+      "PowerShell(if \\($?\\) { \"indexJS.js: syntax OK\" })",
+      "PowerShell(if \\($?\\) { \"globalJS.js: syntax OK\" })",
+      "Bash(rm -rf .claude/qc .tmp-qc-profile)",
+      "Bash(ls .claude)",
+      "Bash(powershell -Command \"\\(Get-Content 'c:\\\\Dev\\\\NuloStudioMaster\\\\projectBuilder.html' -Raw\\).Length\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --enable-logging=stderr --v=1 --virtual-time-budget=3000 --dump-dom \"file:///c:/Dev/NuloStudioMaster/index.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --allow-file-access-from-files --window-size=1440,900 --virtual-time-budget=4000 --screenshot=.claude/qc/qc-dropdown-final.png \"file:///c:/Dev/NuloStudioMaster/.claude/qc/dropdown-probe2.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --allow-file-access-from-files --window-size=1440,900 --virtual-time-budget=4000 --screenshot=\"C:\\\\Dev\\\\NuloStudioMaster\\\\.claude\\\\qc\\\\qc-dropdown-final.png\" \"file:///c:/Dev/NuloStudioMaster/.claude/qc/dropdown-probe2.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --allow-file-access-from-files --window-size=1440,900 --virtual-time-budget=4000 --screenshot=\"C:\\\\Dev\\\\NuloStudioMaster\\\\.claude\\\\qc\\\\qc-dropdown-final.png\" \"file:///c:/Dev/NuloStudioMaster/.claude/qc/dropdown-probe3.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --allow-file-access-from-files --window-size=420,900 --virtual-time-budget=4000 --screenshot=\"C:\\\\Dev\\\\NuloStudioMaster\\\\.claude\\\\qc\\\\qc-mobile-drawer.png\" \"file:///c:/Dev/NuloStudioMaster/.claude/qc/mobile-probe.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --allow-file-access-from-files --window-size=1440,900 --virtual-time-budget=4000 --screenshot=\"C:\\\\Dev\\\\NuloStudioMaster\\\\.claude\\\\qc\\\\qc-cta-final.png\" \"file:///c:/Dev/NuloStudioMaster/.claude/qc/cta-probe3.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --allow-file-access-from-files --window-size=420,900 --virtual-time-budget=4000 --screenshot=\"C:\\\\Dev\\\\NuloStudioMaster\\\\.claude\\\\qc\\\\qc-cta-mobile.png\" \"file:///c:/Dev/NuloStudioMaster/.claude/qc/cta-mobile-probe.html\")",
+      "Bash(rm -f _scrolltest.html _scrolltest2.html)",
+      "Bash(ls _scroll*)",
+      "Bash(cd c:/Dev/NuloStudioMaster && rm -f .claude/qc/responsive-probe.html && cp index.html _resptest.html && tail -3 _resptest.html)",
+      "Bash(rm -f _resptest.html)",
+      "Bash(rm -rf .claude/qc/*.html .claude/qc/*.png .claude/qc/*.js .claude/qc/*.log .tmp-qc-profile)",
+      "Bash(ls .claude/qc/)",
+      "Bash(ls .tmp-qc-profile)",
+      "Bash(cd c:/Dev/NuloStudioMaster && rmdir .claude/qc && find .claude -type f -o -type d 2>/dev/null)",
+      "Bash(rm -rf .tmp-chrome-pb)",
+      "Bash(ls -d .tmp*)",
+      "Bash(ls \"C:\\\\Dev\\\\NuloStudioMaster\" | head -30 && ls \"C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\\" 2>/dev/null || echo \"no chrome standard path\")",
+      "Read(//c/Program Files/Google/Chrome/Application\" 2>/dev/**)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(awk '{print $5, $NF}')"
+    ],
+    "additionalDirectories": [
+      "c:\\Dev\\NuloStudioMaster\\.claude\\qc"
+    ]
+  }
+}

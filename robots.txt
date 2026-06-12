@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block temporary Chrome profile used for local testing
+Disallow: /.tmp-chrome-pb/
+
+Sitemap: https://nulostudio.com/sitemap.xml

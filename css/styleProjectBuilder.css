@@ -1,0 +1,958 @@
+/* ============================================================
+   NULO STUDIO — PROJECT BUILDER PAGE
+   Dedicated multi-step onboarding experience
+   ============================================================ */
+
+
+/* ── Page shell ── */
+.pbPage {
+  min-height: 100vh;
+}
+
+.siteHeader.isScrolled {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.pbNavTitle {
+  justify-self: center;
+  font-family: var(--fontCondensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.58);
+  white-space: nowrap;
+}
+
+.pbReturnHome {
+  justify-self: end;
+  font-family: var(--fontCondensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transFast);
+}
+
+.pbReturnHome:hover { color: var(--clrWhite); }
+
+
+/* ── Page Hero ── */
+.pbHero {
+  position: relative;
+  z-index: 10;
+  padding: clamp(4rem, 7vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
+}
+
+.pbHeroSub {
+  font-family: var(--fontBody);
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 var(--containerPad);
+}
+
+
+/* ── Progress bar ── */
+.pbProgressWrap {
+  position: relative;
+  z-index: var(--zOverlay);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  margin-top: var(--sp6);
+  padding: var(--sp5) 0;
+}
+
+.pbProgress {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 var(--containerPad);
+}
+
+.pbProgressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp2);
+  flex: 1;
+  position: relative;
+  cursor: default;
+}
+
+.pbProgressStep::before { display: none; }
+
+.pbProgressDot {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: var(--clrVoid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fontMono);
+  font-size: 0.65rem;
+  letter-spacing: 0;
+  color: rgba(255,255,255,0.25);
+  transition: border-color var(--transFast), background var(--transFast), color var(--transFast);
+}
+
+.pbProgressLabel {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  white-space: nowrap;
+  transition: color var(--transFast);
+}
+
+/* Active */
+.pbProgressStep.isActive .pbProgressDot {
+  border-color: var(--clrAccent);
+  background: var(--clrAccentDim);
+  color: var(--clrAccent);
+}
+
+.pbProgressStep.isActive .pbProgressLabel { color: var(--clrAccent); }
+
+/* Complete */
+.pbProgressStep.isComplete .pbProgressDot {
+  border-color: var(--clrAccent);
+  background: var(--clrAccent);
+  color: var(--clrVoid);
+}
+
+.pbProgressStep.isComplete .pbProgressLabel { color: rgba(255,255,255,0.45); }
+
+/* ── Builder wrapper ── */
+.pbBuilderWrap {
+  position: relative;
+  z-index: 10;
+  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(4rem, 8vw, 7rem);
+}
+
+.pbBuilderWrap .containerNarrow {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+/* ── Step card ── */
+.pbStepCard {
+  border: 1px solid var(--clrAccentBorder);
+  background: var(--clrAccentDim);
+  box-shadow: 0 0 60px var(--clrAccentGlow);
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+
+/* ── Step header ── */
+.pbStepHeader { margin-bottom: var(--sp8); }
+
+.pbStepNum {
+  font-family: var(--fontMono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--clrAccent);
+  opacity: 0.65;
+  margin-bottom: var(--sp3);
+}
+
+.pbStepTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  line-height: 1.05;
+  margin-bottom: var(--sp3);
+}
+
+.pbStepDesc {
+  font-family: var(--fontBody);
+  font-size: 14px;
+  line-height: 1.68;
+  color: rgba(255,255,255,0.5);
+}
+
+
+/* ── Field layouts ── */
+.pbFieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp5);
+}
+
+.pbFieldGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp5);
+}
+
+.pbFieldFull { grid-column: 1 / -1; }
+
+/* Textarea override (base .formInput styles come from styleGlobal) */
+textarea.formInput {
+  resize: vertical;
+  min-height: 110px;
+  font-family: var(--fontBody);
+  font-size: 14px;
+}
+
+
+/* ── Required / optional labels ── */
+.pbReq {
+  color: var(--clrError);
+  font-size: 0.75em;
+  margin-left: 2px;
+}
+
+.pbOptional {
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(255,255,255,0.25);
+  font-size: 0.9em;
+}
+
+
+/* ── Custom checkboxes ── */
+.pbCheckGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.pbCheckItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background var(--transFast);
+}
+
+.pbCheckItem:hover { background: rgba(255,255,255,0.02); }
+
+.pbCheckItem input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pbCheckBox {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(255,255,255,0.22);
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color var(--transFast), background var(--transFast);
+}
+
+.pbCheckItem input:checked + .pbCheckBox {
+  background: var(--clrAccent);
+  border-color: var(--clrAccent);
+}
+
+.pbCheckItem input:checked + .pbCheckBox::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 7px;
+  border: 1.5px solid var(--clrVoid);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.pbCheckItem input:focus-visible + .pbCheckBox {
+  outline: 2px solid var(--clrAccent);
+  outline-offset: 2px;
+}
+
+.pbCheckLabel {
+  font-family: var(--fontCondensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  transition: color var(--transFast);
+}
+
+.pbCheckItem:hover .pbCheckLabel,
+.pbCheckItem input:checked ~ .pbCheckLabel { color: var(--clrWhite); }
+
+
+/* ── Package cards (Step 5) ── */
+.pbPackageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp4);
+}
+
+.pbPackageItem { display: block; cursor: pointer; }
+
+.pbPackageItem input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pbPackageCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp2);
+  padding: var(--sp6) var(--sp5);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02);
+  transition: border-color var(--transFast), background var(--transFast);
+  height: 100%;
+}
+
+.pbPackageItem:hover .pbPackageCard {
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.04);
+}
+
+.pbPackageItem input:checked + .pbPackageCard {
+  border-color: var(--clrAccent);
+  background: var(--clrAccentDim);
+}
+
+.pbPackageItem input:focus-visible + .pbPackageCard {
+  outline: 2px solid var(--clrAccent);
+  outline-offset: 2px;
+}
+
+.pbPackageName {
+  font-family: var(--fontHeading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+}
+
+.pbPackagePrice {
+  font-family: var(--fontDisplay);
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  color: var(--clrAccent);
+  line-height: 1;
+}
+
+.pbPackageDesc {
+  font-family: var(--fontBody);
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.45);
+}
+
+
+/* ── Review step ── */
+.pbReviewSection {
+  padding-bottom: var(--sp4);
+  margin-bottom: var(--sp4);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.pbReviewSection:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.pbReviewSectionTitle {
+  font-family: var(--fontCondensed);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: var(--sp4);
+}
+
+.pbReviewField { margin-bottom: var(--sp3); }
+.pbReviewField:last-child { margin-bottom: 0; }
+
+.pbReviewLabel {
+  font-family: var(--fontCondensed);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: var(--sp1);
+}
+
+.pbReviewValue {
+  font-family: var(--fontBody);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.72);
+}
+
+.pbReviewTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp2);
+}
+
+.pbReviewTag {
+  font-family: var(--fontCondensed);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clrAccent);
+  padding: 3px 10px;
+  border: 1px solid var(--clrAccentBorder);
+  background: var(--clrAccentDim);
+}
+
+
+/* ── Validation error ── */
+.pbError {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--clrError);
+  margin-top: var(--sp4);
+  display: none;
+}
+
+.pbError.isVisible { display: block; }
+
+
+/* ── Navigation buttons ── */
+.pbNavButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp4);
+  flex-wrap: wrap;
+  margin-top: var(--sp8);
+  padding-top: var(--sp6);
+}
+
+.pbBtnPrev[hidden],
+.pbBtnNext[hidden],
+.pbBtnSubmit[hidden],
+.pbNavButtons[hidden] {
+  display: none !important;
+}
+
+.pbBtnPrev {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp2);
+  padding: 13px 24px;
+  font-family: var(--fontCondensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  cursor: pointer;
+  transition: border-color var(--transFast), color var(--transFast);
+}
+
+.pbBtnPrev:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: var(--clrWhite);
+}
+
+.pbBtnNext {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp2);
+  margin-left: auto;
+  padding: 14px 32px;
+  font-family: var(--fontCondensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clrVoid);
+  background: var(--clrWhite);
+  border: 1.5px solid var(--clrWhite);
+  cursor: pointer;
+  transition: background var(--transFast), border-color var(--transFast), color var(--transFast);
+}
+
+.pbBtnNext:hover {
+  background: var(--clrAccent);
+  border-color: var(--clrAccent);
+  color: var(--clrVoid);
+}
+
+.pbBtnSubmit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp2);
+  margin-left: auto;
+  padding: 14px 32px;
+  font-family: var(--fontCondensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clrVoid);
+  background: var(--clrAccent);
+  border: 1.5px solid var(--clrAccent);
+  cursor: pointer;
+  transition: background var(--transFast), box-shadow var(--transFast);
+}
+
+.pbBtnSubmit:hover {
+  background: var(--clrAccentLight);
+  box-shadow: var(--shadowAccent);
+}
+
+.pbBtnSubmit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner inside submit button */
+.pbBtnSpinner {
+  display: none;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-top-color: var(--clrVoid);
+  border-radius: 50%;
+  animation: pbSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pbSpin { to { transform: rotate(360deg); } }
+
+.pbBtnSubmit.isLoading .pbBtnLabel,
+.pbBtnSubmit.isLoading .pbBtnArrow { display: none; }
+
+.pbBtnSubmit.isLoading .pbBtnSpinner { display: block; }
+
+
+/* ── Success state ── */
+.pbSuccessWrap {
+  text-align: center;
+  padding: var(--sp6) 0;
+}
+
+.pbSuccessIcon {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--clrAccentBorder);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clrAccent);
+  margin: 0 auto var(--sp6);
+}
+
+.pbSuccessTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  line-height: 1.1;
+  margin-bottom: var(--sp5);
+}
+
+.pbSuccessText {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: 1.72;
+  color: rgba(255,255,255,0.6);
+  max-width: 480px;
+  margin: 0 auto var(--sp4);
+}
+
+
+/* ── Redirect countdown ── */
+.pbSuccessRedirect {
+  font-family: var(--fontMono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  margin-top: var(--sp8);
+}
+
+#pbRedirectCount {
+  color: rgba(126,184,240,0.7);
+}
+
+
+/* ── Contact preference cards ── */
+.pbPrefGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp4);
+  margin-bottom: var(--sp5);
+}
+
+.pbPrefCard {
+  display: block;
+  cursor: pointer;
+  height: 100%;
+}
+
+.pbPrefCard input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pbPrefCardInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp3);
+  padding: var(--sp6) var(--sp5);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02);
+  height: 100%;
+  transition: border-color var(--transFast), background var(--transFast);
+}
+
+.pbPrefCard:hover .pbPrefCardInner {
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.04);
+}
+
+.pbPrefCard input:checked + .pbPrefCardInner {
+  border-color: var(--clrAccent);
+  background: var(--clrAccentDim);
+}
+
+.pbPrefCard input:focus-visible + .pbPrefCardInner {
+  outline: 2px solid var(--clrAccent);
+  outline-offset: 2px;
+}
+
+.pbPrefCardFeatured .pbPrefCardInner {
+  border-color: rgba(126,184,240,0.2);
+}
+
+.pbPrefBadge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  font-family: var(--fontMono);
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clrVoid);
+  background: var(--clrAccent);
+  padding: 3px 9px;
+}
+
+.pbPrefIcon {
+  width: 28px;
+  height: 28px;
+  color: var(--clrAccent);
+  opacity: 0.65;
+  transition: opacity var(--transFast);
+}
+
+.pbPrefIcon svg { width: 100%; height: 100%; }
+
+.pbPrefCard input:checked + .pbPrefCardInner .pbPrefIcon { opacity: 1; }
+
+.pbPrefTitle {
+  font-family: var(--fontHeading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+}
+
+.pbPrefDesc {
+  font-family: var(--fontBody);
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.5);
+}
+
+
+/* ── Cal.com embed container ── */
+.pbCalEmbed {
+  margin-top: var(--sp5);
+  border: 1px solid var(--clrAccentBorder);
+  background: rgba(5,5,7,0.45);
+}
+
+.pbCalEmbedHeader {
+  padding: var(--sp3) var(--sp5);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.pbCalEmbedLabel {
+  font-family: var(--fontCondensed);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+.pbCalEmbedBody {
+  min-height: 180px;
+}
+
+.pbCalPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp3);
+  padding: var(--sp8) var(--sp6);
+  text-align: center;
+  color: rgba(255,255,255,0.3);
+}
+
+.pbCalPlaceholder p {
+  font-family: var(--fontBody);
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  margin: 0;
+}
+
+.pbCalPlaceholderNote {
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.22) !important;
+  max-width: 320px;
+}
+
+
+/* ── Callback date/time fields ── */
+.pbCallbackFields {
+  margin-top: var(--sp5);
+  padding-top: var(--sp5);
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.pbCallbackNote {
+  font-family: var(--fontBody);
+  font-size: 13px;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: var(--sp4);
+}
+
+.pbCallbackFields .formInput[type="date"],
+.pbCallbackFields .formInput[type="time"] {
+  color-scheme: dark;
+}
+
+
+/* ── Homepage entry form error ── */
+.pbEntryError {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--clrError);
+  margin-bottom: var(--sp4);
+  display: none;
+}
+
+.pbEntryError.isVisible { display: block; }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ── Review step: unlock scroll so no content is ever cut off ── */
+@media (min-width: 769px) {
+  body.pbScrollable {
+    overflow: auto;
+  }
+
+  body.pbScrollable .pbPage {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+}
+
+@media (min-width: 769px) {
+  body {
+    overflow: hidden;
+  }
+
+  .pbPage {
+    height: 100svh;
+    min-height: 100svh;
+    padding-top: 68px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Hero: deliberate breathing room ── */
+  .pbHero {
+    flex: 0 0 auto;
+    padding: clamp(1.75rem, 3.8vh, 3rem) 0 clamp(1.25rem, 2.5vh, 2rem);
+  }
+
+  .pbHero .sectionTitle {
+    font-size: clamp(2rem, 4.5vh, 3.2rem);
+    margin-bottom: var(--sp6) !important;
+  }
+
+  .pbHeroSub {
+    max-width: 760px;
+    line-height: 1.55;
+  }
+
+  /* ── Step counter: distinct transition element ── */
+  .pbProgressWrap {
+    flex: 0 0 auto;
+    margin-top: clamp(2.25rem, 4.5vh, 3.5rem);
+    padding: 0;
+  }
+
+  .pbProgressDot {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+
+  .pbProgressLabel {
+    font-size: 11px;
+    letter-spacing: 0.11em;
+  }
+
+  /* ── Builder: intentional gap between step counter and card ── */
+  .pbBuilderWrap {
+    flex: 0 1 auto;
+    padding: clamp(1.75rem, 3.5vh, 2.5rem) 0 clamp(0.75rem, 1.6vh, 1.1rem);
+  }
+
+  .pbStepCard {
+    padding: clamp(0.9rem, 1.7vh, 1.25rem) clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .pbStepHeader {
+    margin-bottom: clamp(0.75rem, 1.5vh, 1rem);
+  }
+
+  .pbStepNum {
+    margin-bottom: var(--sp2);
+  }
+
+  .pbFieldGroup,
+  .pbFieldGrid {
+    gap: clamp(0.65rem, 1.3vh, 0.9rem);
+  }
+
+  .formInput {
+    padding: 8px 12px;
+  }
+
+  textarea.formInput {
+    min-height: clamp(58px, 8vh, 76px);
+  }
+
+  .pbCheckItem {
+    padding: 9px 0;
+  }
+
+  .pbPackageCard {
+    padding: clamp(0.75rem, 1.4vh, 1rem) var(--sp4);
+  }
+
+  .pbNavButtons {
+    margin-top: clamp(0.5rem, 1vh, 0.75rem);
+    padding-top: clamp(0.5rem, 1vh, 0.75rem);
+  }
+
+  .pbBtnPrev,
+  .pbBtnNext,
+  .pbBtnSubmit {
+    padding: 11px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .pbNavTitle {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .pbReturnHome {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .pbProgressLabel { display: none; }
+
+  .pbProgressDot {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+  }
+
+  .pbFieldGrid { grid-template-columns: 1fr; }
+
+  .pbCheckGroup { grid-template-columns: 1fr; }
+
+  .pbPackageGrid { grid-template-columns: 1fr 1fr; }
+  .pbPrefGrid    { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .pbNavButtons {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .pbBtnNext,
+  .pbBtnPrev,
+  .pbBtnSubmit {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .pbBtnPrev { order: 2; }
+
+  .pbPackageGrid { grid-template-columns: 1fr; }
+}

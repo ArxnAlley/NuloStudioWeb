@@ -1,0 +1,5 @@
+SmokeLab is a modern smoke shop website concept designed to demonstrate how specialty retail businesses can create a stronger online presence through premium branding, product showcases, customer reviews, and responsive design.
+
+The project includes category navigation, product galleries, location information, contact functionality, and a fully responsive mobile experience.
+
+Built as a portfolio concept, SmokeLab showcases how smoke shops, vape stores, and specialty retail businesses can present their products and brand through a modern website.

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Builder | Nulo Studio</title>
+  <meta name="description" content="Start your project with Nulo Studio. Walk through a few quick steps and tell us about your business.">
+  <link rel="canonical" href="https://nulostudio.com/projectBuilder.html">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="NSFavicon.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styleGlobal.css">
+  <link rel="stylesheet" href="css/styleProjectBuilder.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Background layers -->
+  <div class="noiseOverlay" aria-hidden="true"></div>
+  <canvas id="starCanvas" aria-hidden="true"></canvas>
+  <div class="asteroidLayer" aria-hidden="true"></div>
+
+
+  <!-- ============================================================
+    SITE HEADER
+  ============================================================ -->
+  <header class="siteHeader" id="siteHeader">
+    <nav class="mainNav" aria-label="Main navigation">
+
+      <div class="navLogo">
+        <a href="index.html" aria-label="Nulo Studio home">
+          <img src="logos/MasterLogo.png" alt="Nulo Studio — website design and local SEO" width="200" height="200">
+        </a>
+      </div>
+
+      <div class="pbNavTitle" aria-current="page">Project Builder</div>
+
+      <a href="index.html" class="pbReturnHome">Return Home</a>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+    MAIN
+  ============================================================ -->
+  <main class="pbPage">
+
+    <!-- Page hero -->
+    <section class="pbHero" aria-label="Project Builder">
+      <div class="containerNarrow textCenter" style="padding-top:0;padding-bottom:0">
+        <h1 class="sectionTitle" style="margin-bottom:var(--sp4)">
+          Let&rsquo;s Build<br>Your Project.
+        </h1>
+        <p class="pbHeroSub">
+          Walk through a few quick steps and tell us about your business. We&rsquo;ll review everything and reach out with next steps.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- Progress indicator (dots inserted by JS) -->
+    <div class="pbProgressWrap" aria-label="Step progress">
+      <div class="pbProgress" id="pbProgress" role="list" aria-live="polite"></div>
+    </div>
+
+
+    <!-- Builder -->
+    <div class="pbBuilderWrap">
+      <div class="containerNarrow">
+
+        <!-- Step card -->
+        <div class="pbStepCard">
+
+
+          <!-- ═══ STEP 1: CONTACT ═══ -->
+          <div class="pbStep" data-step="contact">
+            <div class="pbStepHeader">
+              <p class="pbStepNum">Step 01 / 05</p>
+              <h2 class="pbStepTitle">Contact Information</h2>
+              <p class="pbStepDesc">Who should we reach out to?</p>
+            </div>
+
+            <div class="pbFieldGroup">
+              <div class="pbFieldGrid">
+
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_name">Full Name <span class="pbReq">*</span></label>
+                  <input class="formInput" type="text" id="pb_name" name="full_name" autocomplete="name" required placeholder="Your full name">
+                </div>
+
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_business">Business Name <span class="pbReq">*</span></label>
+                  <input class="formInput" type="text" id="pb_business" name="business_name" autocomplete="organization" required placeholder="Your business name">
+                </div>
+
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_email">Email Address <span class="pbReq">*</span></label>
+                  <input class="formInput" type="email" id="pb_email" name="email" autocomplete="email" required placeholder="you@yourbusiness.com">
+                </div>
+
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_phone">Phone Number</label>
+                  <input class="formInput" type="tel" id="pb_phone" name="phone" autocomplete="tel" placeholder="(555) 000-0000">
+                </div>
+
+              </div>
+            </div>
+            <p class="pbError" id="pbError_contact"></p>
+          </div>
+
+
+          <!-- ═══ STEP 2: BUSINESS ═══ -->
+          <div class="pbStep" data-step="business" hidden>
+            <div class="pbStepHeader">
+              <p class="pbStepNum">Step 02 / 05</p>
+              <h2 class="pbStepTitle">Business Information</h2>
+              <p class="pbStepDesc">Help us understand your business so we can start planning.</p>
+            </div>
+
+            <div class="pbFieldGroup">
+              <div class="pbFieldGrid">
+
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_website">Website <span class="pbOptional">(if applicable)</span></label>
+                  <input class="formInput" type="url" id="pb_website" name="website" placeholder="https://" autocomplete="url">
+                </div>
+
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_gbp">Google Business Profile <span class="pbOptional">(optional)</span></label>
+                  <input class="formInput" type="url" id="pb_gbp" name="google_profile" placeholder="https://g.co/...">
+                </div>
+
+                <div class="formGroup pbFieldFull">
+                  <label class="formLabel" for="pb_area">Service Area <span class="pbReq">*</span></label>
+                  <input class="formInput" type="text" id="pb_area" name="service_area" placeholder="e.g. Ashland, KY and surrounding areas" required>
+                </div>
+
+              </div>
+
+              <div class="formGroup">
+                <label class="formLabel" for="pb_about">Tell us about your business <span class="pbReq">*</span></label>
+                <textarea class="formInput" id="pb_about" name="about_business" rows="5" placeholder="Your services, customers, and what you do best..." required></textarea>
+              </div>
+            </div>
+            <p class="pbError" id="pbError_business"></p>
+          </div>
+
+
+          <!-- ═══ STEP 3: CHALLENGES ═══ -->
+          <div class="pbStep" data-step="challenges" hidden>
+            <div class="pbStepHeader">
+              <p class="pbStepNum">Step 03 / 05</p>
+              <h2 class="pbStepTitle">Current Challenges</h2>
+              <p class="pbStepDesc">Select everything that applies to your business right now.</p>
+            </div>
+
+            <div class="pbCheckGroup">
+
+              <label class="pbCheckItem">
+                <input type="checkbox" name="challenges" value="No Website">
+                <span class="pbCheckBox" aria-hidden="true"></span>
+                <span class="pbCheckLabel">No Website</span>
+              </label>
+
+              <label class="pbCheckItem">
+                <input type="checkbox" name="challenges" value="Outdated Website">
+                <span class="pbCheckBox" aria-hidden="true"></span>
+                <span class="pbCheckLabel">Outdated Website</span>
+              </label>
+
+              <label class="pbCheckItem">
+                <input type="checkbox" name="challenges" value="Not Showing Up On Google">
+                <span class="pbCheckBox" aria-hidden="true"></span>
+                <span class="pbCheckLabel">Not Showing Up On Google</span>
+              </label>
+
+              <label class="pbCheckItem">
+                <input type="checkbox" name="challenges" value="Not Getting Enough Leads">
+                <span class="pbCheckBox" aria-hidden="true"></span>
+                <span class="pbCheckLabel">Not Getting Enough Leads</span>
+              </label>
+
+              <label class="pbCheckItem">
+                <input type="checkbox" name="challenges" value="Leads Are Disorganized">
+                <span class="pbCheckBox" aria-hidden="true"></span>
+                <span class="pbCheckLabel">Leads Are Disorganized</span>
+              </label>
+
+              <label class="pbCheckItem">
+                <input type="checkbox" name="challenges" value="No Clear Online Presence">
+                <span class="pbCheckBox" aria-hidden="true"></span>
+                <span class="pbCheckLabel">No Clear Online Presence</span>
+              </label>
+
+              <label class="pbCheckItem">
+                <input type="checkbox" name="challenges" value="Other">
+                <span class="pbCheckBox" aria-hidden="true"></span>
+                <span class="pbCheckLabel">Other</span>
+              </label>
+
+            </div>
+            <p class="pbError" id="pbError_challenges"></p>
+          </div>
+
+
+          <!-- ═══ STEP 4: GOALS ═══ -->
+          <div class="pbStep" data-step="goals" hidden>
+            <div class="pbStepHeader">
+              <p class="pbStepNum">Step 04 / 05</p>
+              <h2 class="pbStepTitle">Project Goals</h2>
+              <p class="pbStepDesc">Help us understand what success looks like for your business.</p>
+            </div>
+
+            <div class="pbFieldGroup">
+
+              <div class="formGroup">
+                <label class="formLabel" for="pb_goals">What would you like your website and online presence to accomplish? <span class="pbReq">*</span></label>
+                <textarea class="formInput" id="pb_goals" name="project_goals" rows="5" placeholder="More calls, more leads, better Google visibility, consistent customer flow..." required></textarea>
+              </div>
+
+              <div class="formGroup">
+                <label class="formLabel" for="pb_specific">Anything specific you&rsquo;d like included? <span class="pbOptional">(optional)</span></label>
+                <textarea class="formInput" id="pb_specific" name="specific_details" rows="4" placeholder="Features, ideas, competitors you admire, or inspiration you'd like to share..."></textarea>
+              </div>
+
+            </div>
+            <p class="pbError" id="pbError_goals"></p>
+          </div>
+
+
+          <!-- ═══ STEP 5: PACKAGE ═══ -->
+          <div class="pbStep" data-step="package" hidden>
+            <div class="pbStepHeader">
+              <p class="pbStepNum">Step 05 / 06</p>
+              <h2 class="pbStepTitle">Package Interest</h2>
+              <p class="pbStepDesc">Which option feels closest to what you&rsquo;re looking for? You can always change later.</p>
+            </div>
+
+            <div class="pbPackageGrid">
+
+              <label class="pbPackageItem">
+                <input type="radio" name="package" value="Foundation ($97/mo)">
+                <div class="pbPackageCard">
+                  <span class="pbPackageName">Foundation</span>
+                  <span class="pbPackagePrice">$97/mo</span>
+                  <span class="pbPackageDesc">Website + Local Visibility</span>
+                </div>
+              </label>
+
+              <label class="pbPackageItem">
+                <input type="radio" name="package" value="Growth System ($147/mo)">
+                <div class="pbPackageCard">
+                  <span class="pbPackageName">Growth System</span>
+                  <span class="pbPackagePrice">$147/mo</span>
+                  <span class="pbPackageDesc">Website + SEO + Lead Capture</span>
+                </div>
+              </label>
+
+              <label class="pbPackageItem">
+                <input type="radio" name="package" value="Operations System ($197/mo)">
+                <div class="pbPackageCard">
+                  <span class="pbPackageName">Operations System</span>
+                  <span class="pbPackagePrice">$197/mo</span>
+                  <span class="pbPackageDesc">Full System + OHub + FieldRunner</span>
+                </div>
+              </label>
+
+              <label class="pbPackageItem">
+                <input type="radio" name="package" value="Not Sure Yet">
+                <div class="pbPackageCard">
+                  <span class="pbPackageName">Not Sure Yet</span>
+                  <span class="pbPackagePrice">&nbsp;</span>
+                  <span class="pbPackageDesc">Help me figure out the right fit</span>
+                </div>
+              </label>
+
+            </div>
+            <p class="pbError" id="pbError_package"></p>
+          </div>
+
+
+          <!-- ═══ STEP 6: CONTACT PREFERENCE ═══ -->
+          <div class="pbStep" data-step="preference" hidden>
+            <div class="pbStepHeader">
+              <p class="pbStepNum">Step 06 / 06</p>
+              <h2 class="pbStepTitle">How Would You Like to Continue?</h2>
+              <p class="pbStepDesc">Choose how you&rsquo;d like us to follow up after reviewing your project.</p>
+            </div>
+
+            <div class="pbPrefGrid">
+
+              <!-- Book a Discovery Call -->
+              <label class="pbPrefCard pbPrefCardFeatured">
+                <input type="radio" name="contact_preference" value="Book a Discovery Call" id="pref_call">
+                <div class="pbPrefCardInner">
+                  <span class="pbPrefBadge" aria-hidden="true">Recommended</span>
+                  <div class="pbPrefIcon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                  </div>
+                  <h3 class="pbPrefTitle">Book a Discovery Call</h3>
+                  <p class="pbPrefDesc">Book a time directly on our calendar.</p>
+                </div>
+              </label>
+
+              <!-- Request a Callback -->
+              <label class="pbPrefCard">
+                <input type="radio" name="contact_preference" value="Request a Callback" id="pref_callback">
+                <div class="pbPrefCardInner">
+                  <div class="pbPrefIcon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/>
+                    </svg>
+                  </div>
+                  <h3 class="pbPrefTitle">Request a Callback</h3>
+                  <p class="pbPrefDesc">We&rsquo;ll reach out at a time that works best for you.</p>
+                </div>
+              </label>
+
+              <!-- Email Me -->
+              <label class="pbPrefCard">
+                <input type="radio" name="contact_preference" value="Email Me" id="pref_email">
+                <div class="pbPrefCardInner">
+                  <div class="pbPrefIcon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </div>
+                  <h3 class="pbPrefTitle">Email Me</h3>
+                  <p class="pbPrefDesc">Send project details and next steps by email.</p>
+                </div>
+              </label>
+
+              <!-- Text Me -->
+              <label class="pbPrefCard">
+                <input type="radio" name="contact_preference" value="Text Me" id="pref_text">
+                <div class="pbPrefCardInner">
+                  <div class="pbPrefIcon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </div>
+                  <h3 class="pbPrefTitle">Text Me</h3>
+                  <p class="pbPrefDesc">Send project details and next steps by text.</p>
+                </div>
+              </label>
+
+            </div>
+
+            <!-- Cal.com embed — shown when "Book a Discovery Call" is selected -->
+            <div class="pbCalEmbed" id="pbCalEmbed" hidden>
+              <div class="pbCalEmbedHeader">
+                <p class="pbCalEmbedLabel">Select a time for your discovery call</p>
+              </div>
+              <div class="pbCalEmbedBody" id="pbCalEmbedBody">
+                <!--
+                  CAL.COM INTEGRATION
+                  Replace this placeholder with your Cal.com inline embed:
+                  1. Go to cal.com → your event → Embed → Inline
+                  2. Copy the embed code and paste it here
+                  3. Remove the pbCalPlaceholder div below
+                -->
+                <div class="pbCalPlaceholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  <p>Calendar scheduling will appear here.</p>
+                  <p class="pbCalPlaceholderNote">Add your Cal.com inline embed code to enable direct booking.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Callback date/time — shown when "Request a Callback" is selected -->
+            <div class="pbCallbackFields" id="pbCallbackFields" hidden>
+              <p class="pbCallbackNote">These are preferences. We&rsquo;ll do our best to reach you within this window.</p>
+              <div class="pbFieldGrid">
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_cb_date">Preferred Date</label>
+                  <input class="formInput" type="date" id="pb_cb_date" name="callback_date">
+                </div>
+                <div class="formGroup">
+                  <label class="formLabel" for="pb_cb_time">Preferred Time</label>
+                  <input class="formInput" type="time" id="pb_cb_time" name="callback_time">
+                </div>
+              </div>
+            </div>
+
+            <p class="pbError" id="pbError_preference"></p>
+          </div>
+
+
+          <!-- ═══ REVIEW & SUBMIT ═══ -->
+          <div class="pbStep" data-step="review" hidden>
+            <div class="pbStepHeader">
+              <p class="pbStepNum">Final Step</p>
+              <h2 class="pbStepTitle">Review &amp; Submit</h2>
+              <p class="pbStepDesc">Take a moment to review your information before we receive it.</p>
+            </div>
+
+            <div id="pbReviewData"></div>
+
+            <p class="pbError" id="pbError_review"></p>
+          </div>
+
+
+          <!-- ═══ SUCCESS ═══ -->
+          <div class="pbStep" data-step="success" hidden>
+            <div class="pbSuccessWrap">
+
+              <div class="pbSuccessIcon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+
+              <h2 class="pbSuccessTitle">Thank You</h2>
+
+              <p class="pbSuccessText">We&rsquo;ve received your project information and will review everything shortly.</p>
+
+              <p class="pbSuccessText" id="pbSuccessPreferenceMsg">We&rsquo;ll be in touch using your preferred contact method.</p>
+
+              <p class="pbSuccessRedirect">
+                Redirecting to the homepage in <span id="pbRedirectCount">50</span> seconds&hellip;
+              </p>
+
+            </div>
+          </div>
+
+
+          <!-- Navigation buttons -->
+          <div class="pbNavButtons" id="pbNavButtons">
+            <button type="button" class="pbBtnPrev" id="pbPrev" hidden>&larr; Back</button>
+            <button type="button" class="pbBtnNext" id="pbNext">
+              Continue &rarr;
+            </button>
+            <button type="button" class="pbBtnSubmit" id="pbSubmit" hidden>
+              <span class="pbBtnLabel">Submit Project Request</span>
+              <span class="pbBtnArrow">&rarr;</span>
+              <span class="pbBtnSpinner" aria-hidden="true"></span>
+            </button>
+          </div>
+
+
+        </div>
+        <!-- /.pbStepCard -->
+
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- Scripts -->
+  <script src="js/globalJS.js"></script>
+  <script src="js/projectBuilderJS.js"></script>
+
+</body>
+</html>

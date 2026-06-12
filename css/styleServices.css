@@ -1,0 +1,538 @@
+/* ============================================================
+   NULO STUDIO — SERVICES PAGE
+   css/styleServices.css
+   All global patterns (nav, footer, buttons, service cards,
+   FAQ accordion, reveal classes, section wrappers, containers)
+   live in styleGlobal.css. This file is page-specific only.
+============================================================ */
+
+
+/* ============================================================
+   PAGE HERO
+============================================================ */
+
+.svcHeroSection {
+  position: relative;
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(7rem, 14vw, 11rem) var(--containerPad) clamp(4rem, 8vw, 7rem);
+  overflow: hidden;
+  background: var(--clrDeep);
+}
+
+.svcHeroGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 58% 46% at 32% 48%, rgba(126,184,240,0.012) 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.svcHeroInner {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.svcHeroTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(3rem, 7vw, 6.2rem);
+  line-height: var(--leadingTight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp6);
+}
+
+.svcHeroSub {
+  font-family: var(--fontBody);
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1.75;
+  color: rgba(255,255,255,0.58);
+  max-width: 600px;
+  margin: 0 auto var(--sp10);
+}
+
+.svcHeroCtas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp5);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .svcHeroCtas { flex-direction: column; width: 100%; }
+  .svcHeroCtas .btnPrimary,
+  .svcHeroCtas .btnGhost { width: 100%; justify-content: center; }
+}
+
+
+/* ============================================================
+   SERVICE OVERVIEW GRID
+============================================================ */
+
+.svcOverviewSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.svcOverviewHeader {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--sp12);
+}
+
+.svcOverviewSub {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.52);
+  margin-top: var(--sp5);
+}
+
+/* 3-column desktop, 2-col tablet, 1-col mobile */
+.svcOverviewGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp6);
+}
+
+.svcOverviewSection .serviceCard {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.32);
+}
+
+.svcOverviewSection .serviceCard:hover {
+  box-shadow: 0 12px 34px rgba(0,0,0,0.5);
+}
+
+.svcOverviewSection .serviceCard:hover::before {
+  opacity: 0.7;
+}
+
+@media (max-width: 960px) {
+  .svcOverviewGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .svcOverviewGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   HOW IT WORKS TOGETHER — SYSTEM SECTION
+============================================================ */
+
+.svcSystemSection .containerMid {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.svcSystemInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp16);
+  align-items: center;
+}
+
+.svcSystemBody {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.58);
+  margin: var(--sp5) 0 var(--sp8);
+}
+
+.svcSystemDiagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp5);
+}
+
+.svcSystemNode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border: 1px solid var(--clrAccentBorder);
+  background: rgba(126,184,240,0.018);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.42);
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clrAccent);
+  text-align: center;
+}
+
+.svcSystemRing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp3);
+  justify-content: center;
+  max-width: 320px;
+}
+
+.svcSystemPill {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: var(--sp2) var(--sp4);
+  transition: color var(--transFast), border-color var(--transFast);
+}
+
+.svcSystemPill:hover {
+  color: var(--clrAccent);
+  border-color: var(--clrAccentBorder);
+  background: rgba(126,184,240,0.018);
+}
+
+@media (max-width: 768px) {
+  .svcSystemInner {
+    grid-template-columns: 1fr;
+    gap: var(--sp10);
+  }
+}
+
+
+/* ============================================================
+   DEEP SERVICE SECTIONS
+============================================================ */
+
+.svcDeepSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.svcDeepGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.svcDeepGrid.svcDeepReverse {
+  direction: rtl;
+}
+
+.svcDeepGrid.svcDeepReverse > * {
+  direction: ltr;
+}
+
+.svcDeepTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: var(--leadingTight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp5);
+}
+
+.svcDeepIntro {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.65);
+  margin-bottom: var(--sp8);
+}
+
+.svcDeepPoints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp4);
+  margin-bottom: var(--sp8);
+}
+
+.svcDeepPoint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp4);
+}
+
+.svcDeepPointIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  color: var(--clrAccent);
+}
+
+.svcDeepPointText {
+  font-family: var(--fontBody);
+  font-size: 14px;
+  line-height: 1.68;
+  color: rgba(255,255,255,0.62);
+}
+
+.svcDeepPointText strong {
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Right-side highlight panel */
+.svcDeepVisual {
+  background: rgba(5,5,7,0.72);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.44);
+  padding: var(--sp8);
+  position: sticky;
+  top: 100px;
+}
+
+.svcDeepVisualLabel {
+  font-family: var(--fontMono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clrAccent);
+  opacity: 0.65;
+  margin-bottom: var(--sp6);
+  display: flex;
+  align-items: center;
+  gap: var(--sp3);
+}
+
+.svcDeepVisualLabel::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--clrAccent);
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+.svcDeepFeatureList {
+  display: flex;
+  flex-direction: column;
+}
+
+.svcDeepFeature {
+  font-family: var(--fontCondensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  padding: var(--sp3) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: var(--sp3);
+}
+
+.svcDeepFeature::before {
+  content: '—';
+  color: var(--clrAccent);
+  opacity: 0.45;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.svcDeepFeature:last-child { border-bottom: none; }
+
+@media (max-width: 900px) {
+  .svcDeepGrid,
+  .svcDeepGrid.svcDeepReverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .svcDeepVisual { position: static; }
+}
+
+
+/* ============================================================
+   SERVICE AREAS
+============================================================ */
+
+.svcAreasSection .containerWide {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.svcAreasHeader {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto var(--sp12);
+}
+
+.svcAreasSub {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.48);
+  margin-top: var(--sp5);
+}
+
+.svcAreasGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp5);
+  margin-bottom: var(--sp8);
+}
+
+.svcAreaCard {
+  padding: var(--sp6) var(--sp8);
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.015);
+  transition: border-color var(--transFast), background var(--transFast);
+}
+
+.svcAreaCard:hover {
+  border-color: var(--clrAccentBorder);
+  background: rgba(126,184,240,0.018);
+}
+
+.svcAreaCity {
+  font-family: var(--fontHeading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp1);
+}
+
+.svcAreaState {
+  font-family: var(--fontMono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clrAccent);
+  opacity: 0.6;
+}
+
+.svcAreasFootnote {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .svcAreasGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .svcAreasGrid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   SERVICES FAQ HEADER
+   Accordion items use global .faqItem / .faqQuestion / .faqAnswer
+============================================================ */
+
+.svcFaqSection .containerNarrow {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.svcFaqHeader {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--sp12);
+}
+
+
+/* ============================================================
+   TRUST / WHAT BUSINESSES ARE SAYING
+   (.reviewCard, .reviewStars, .reviewQuote, .reviewAttribution
+    are global — see styleGlobal.css section 14)
+============================================================ */
+
+.svcTrustSection .containerMid {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.svcTrustHeader {
+  text-align: center;
+  margin-bottom: var(--sp10);
+}
+
+.svcTrustCard {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.svcTrustNote {
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+  text-align: center;
+  margin-top: var(--sp8);
+}
+
+
+/* ============================================================
+   BOTTOM CTA
+============================================================ */
+
+.svcCtaSection .containerMid {
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.svcCtaInner {
+  text-align: center;
+  position: relative;
+}
+
+.svcCtaAccent {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(126,184,240,0.22), transparent);
+  margin: 0 auto var(--sp8);
+}
+
+.svcCtaTitle {
+  font-family: var(--fontDisplay);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: var(--leadingTight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clrWhite);
+  margin-bottom: var(--sp5);
+}
+
+.svcCtaSub {
+  font-family: var(--fontBody);
+  font-size: 15px;
+  line-height: var(--leadingRelaxed);
+  color: rgba(255,255,255,0.52);
+  max-width: 520px;
+  margin: 0 auto var(--sp10);
+}
+
+.svcCtaGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp5);
+  flex-wrap: wrap;
+}
+
+.svcCtaNote {
+  margin-top: var(--sp6);
+  font-family: var(--fontCondensed);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+}
+
+@media (max-width: 480px) {
+  .svcCtaGroup { flex-direction: column; width: 100%; }
+  .svcCtaGroup .btnPrimary,
+  .svcCtaGroup .btnGhost { width: 100%; justify-content: center; }
+}
